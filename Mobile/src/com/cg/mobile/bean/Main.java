@@ -1,5 +1,7 @@
 package com.cg.mobile.bean;
 
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -26,6 +28,15 @@ public class Main {
 	
 public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer, Purchase_details> hm2)
 {
+	Integer mobileIdLink=0;
+	Integer purchasekey=0;
+	for(Integer purchaseId : hm2.keySet())
+	{
+		Purchase_details pd_obj=hm2.get(purchaseId);
+		mobileIdLink=(Integer)pd_obj.getMobileId();
+		purchasekey=purchaseId;
+	}
+	System.out.println(mobileIdLink + " "+ hm1.get(mobileIdLink)+ " "+ purchasekey+ " "+ hm2.get(purchasekey));
 	
 }
 	public static void main(String[] args) {
@@ -42,7 +53,7 @@ public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer
 		hm1.put(103, ob4);
 		hm1.put(104, ob5);
 		Main obj4=new Main();
-		obj4.addPurchaseDetails(hm1,obj3);
+		
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("enter mobile id to be bought");
 		int Id=scanner.nextInt();
@@ -61,7 +72,8 @@ public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer
 			String value = obj3.get(key).toString();
 			System.out.println(keys +"  "+ value);
 		}
-
+		obj4.addPurchaseDetails(hm1,obj3);
 	}
 
 }
+
