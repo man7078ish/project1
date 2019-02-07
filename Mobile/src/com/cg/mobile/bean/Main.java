@@ -11,7 +11,7 @@ public class Main {
 	
 	public static HashMap<Integer, Purchase_details> purchase(Purchase_details p)
 	{ int orderid=100;
-		
+	
 		ArrayList<Purchase_details> obdetail = new ArrayList<>(); 
 		obdetail.add(p);
 		
@@ -25,7 +25,15 @@ public class Main {
 		return hm2;
 		
 	}
-	
+	public void show(HashMap<Integer, Mobile_info> hm1)
+	{
+		for(Integer key :hm1.keySet())
+		{
+			String keys = key.toString();
+			String value = hm1.get(key).toString();
+			System.out.println(keys +"  "+ value);
+		}
+	}
 public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer, Purchase_details> hm2)
 {
 	Integer mobileIdLink=0;
@@ -36,6 +44,9 @@ public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer
 		mobileIdLink=(Integer)pd_obj.getMobileId();
 		purchasekey=purchaseId;
 	}
+	int countdec=hm1.get(mobileIdLink).getCount();
+	countdec= countdec-1;
+	hm1.get(mobileIdLink).setCount(countdec);
 	System.out.println(mobileIdLink + " "+ hm1.get(mobileIdLink)+ " "+ purchasekey+ " "+ hm2.get(purchasekey));
 	
 }
@@ -53,7 +64,8 @@ public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer
 		hm1.put(103, ob4);
 		hm1.put(104, ob5);
 		Main obj4=new Main();
-		
+		Main obj6=new Main();
+		obj6.show(hm1);
 		Scanner scanner=new Scanner(System.in);
 		System.out.println("enter mobile id to be bought");
 		int Id=scanner.nextInt();
@@ -66,12 +78,12 @@ public void addPurchaseDetails(HashMap<Integer, Mobile_info> hm1,HashMap<Integer
 		long num=scanner.nextLong();
 		Purchase_details obj1=new Purchase_details(name,num,Id);
 		HashMap<Integer, Purchase_details> obj3=purchase(obj1);
-		for(Integer key :obj3.keySet())
+		/*for(Integer key :obj3.keySet())
 		{
 			String keys = key.toString();
 			String value = obj3.get(key).toString();
 			System.out.println(keys +"  "+ value);
-		}
+		}*/
 		obj4.addPurchaseDetails(hm1,obj3);
 	}
 
